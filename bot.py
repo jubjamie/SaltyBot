@@ -11,7 +11,7 @@ GUILD = os.getenv('DISCORD_GUILD')
 
 class CustomClient(discord.Client):
     async def on_ready(self):
-        print(f'{self.user} has connected to Discord!')
+        print("{} has connected to Discord!".format(self.user))
         for g in self.guilds:
             print(f'Conencted to {g}')
 
