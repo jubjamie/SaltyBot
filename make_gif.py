@@ -29,7 +29,7 @@ def make_gif(text):
 
 
     # load the font
-    font = ImageFont.truetype("/imgs/Roboto-Regular.ttf", 55)
+    font = ImageFont.truetype("/imgs/Roboto-Regular.ttf", 65)
     draw = ImageDraw.Draw(img)
 
     # add text to each frame
