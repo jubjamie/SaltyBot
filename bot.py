@@ -25,7 +25,7 @@ async def fuck(ctx, *, thing):
 
 @bot.command(name='chaser', help='Who is the chaser?')
 async def chaser(ctx):
-    voice_channel = ctx.author.voice.channel if ctx.auth.voice is not None
+    voice_channel = ctx.author.voice.channel if ctx.auth.voice is not None else None
     channel = None
     if voice_channel is not None:
         channel = voice_channel.name
@@ -61,6 +61,7 @@ async def idgi(ctx):
     await ctx.message.delete()
 
 bot.run(TOKEN)
+print('Bot started.')
 
 #client = CustomClient()
 #client.run(TOKEN)
