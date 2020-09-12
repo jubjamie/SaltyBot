@@ -4,9 +4,13 @@ import time
 from discord.ext import commands
 from dotenv import load_dotenv
 
+print('Loading tokens...')
+
 load_dotenv("tokens.env")
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
+
+print('Building bot...')
 
 
 class CustomClient(discord.Client):
@@ -41,7 +45,7 @@ async def chaser(ctx):
 
 @bot.command(name='goal', help='BBC WM Goal Horn')
 async def goal(ctx):
-    voice_channel = ctx.author.voice.channel
+    voice_channel = ctx.author.voice.channel if ctx.author.voice is not None else None
     channel = None
     if voice_channel is not None:
         channel = voice_channel.name
@@ -60,8 +64,8 @@ async def idgi(ctx):
     await channel.send(file=discord.File('idgi.jpg'))
     await ctx.message.delete()
 
+print('Bot starting!')
 bot.run(TOKEN)
-print('Bot started.')
 
 #client = CustomClient()
 #client.run(TOKEN)
