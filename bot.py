@@ -33,6 +33,7 @@ bot = commands.Bot(command_prefix='!')
 async def kill(ctx, *, pw):
     await ctx.message.delete()
     if str(pw) == kill_pw:
+        await ctx.send("Putting bot to sleep...")
         await bot.logout()
     else:
         await ctx.send("No permission to kill bot.")
