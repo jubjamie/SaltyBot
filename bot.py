@@ -4,6 +4,7 @@ import time
 import random
 from discord.ext import commands
 from dotenv import load_dotenv
+from make_gif import make_gif
 
 print('Loading tokens...')
 
@@ -163,6 +164,22 @@ async def idgi(ctx):
             time.sleep(1)
         await vc.disconnect()
     await ctx.message.delete()
+
+@bot.command(name='qi', help='ALARM - !qi text')
+async def qi(ctx, *, text):
+    channel = ctx.message.channel
+    await ctx.message.delete()
+    await channel.send(file=discord.File(make_gif(text)))
+    voice_channel = ctx.author.voice.channel if ctx.author.voice is not None else None
+    channel = None
+    if voice_channel is not None:
+        channel = voice_channel.name
+        vc = await voice_channel.connect()
+        vc.play(discord.FFmpegPCMAudio(source='audio/qi.mp3'))
+        while vc.is_playing():
+            time.sleep(1)
+        await vc.disconnect()
+
 
 print('Bot starting!')
 bot.run(TOKEN)
