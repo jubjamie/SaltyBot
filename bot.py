@@ -170,6 +170,7 @@ async def idgi(ctx):
 async def qi(ctx, *, text):
     channel = ctx.message.channel
     await ctx.message.delete()
+    print(text)
     await channel.send(file=discord.File(make_gif(text)))
     voice_channel = ctx.author.voice.channel if ctx.author.voice is not None else None
     channel = None

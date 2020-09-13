@@ -29,7 +29,11 @@ def make_gif(text):
 
 
     # load the font
-    font = ImageFont.truetype("RobotoR.ttf", 65)
+    #font_size = max(10,65-(max(0, len(text)-8)*4))
+    font_size = 65
+    font = ImageFont.truetype("RobotoR.ttf", font_size)
+    text = text_wrap(text, font, W-50)
+    text = "\n".join(text)
     draw = ImageDraw.Draw(img)
 
     # add text to each frame
@@ -48,3 +52,41 @@ def make_gif(text):
     # clean up
     shutil.rmtree('frames')
     return "out.gif"
+
+
+def text_wrap(text, font, max_width):
+    """Wrap text base on specified width.
+    This is to enable text of width more than the image width to be display
+    nicely.
+    @params:
+        text: str
+            text to wrap
+        font: obj
+            font of the text
+        max_width: int
+            width to split the text with
+    @return
+        lines: list[str]
+            list of sub-strings
+    """
+    lines = []
+
+    # If the text width is smaller than the image width, then no need to split
+    # just add it to the line list and return
+    if font.getsize(text)[0] <= max_width:
+        lines.append(text)
+    else:
+        # split the line by spaces to get words
+        words = text.split(' ')
+        i = 0
+        # append every word to a line while its width is shorter than the image width
+        while i < len(words):
+            line = ''
+            while i < len(words) and font.getsize(line + words[i])[0] <= max_width:
+                line = line + words[i] + " "
+                i += 1
+            if not line:
+                line = words[i]
+                i += 1
+            lines.append(line)
+    return lines
