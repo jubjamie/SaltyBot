@@ -15,8 +15,9 @@ kill_pw = os.getenv('KILL_PW')
 
 print('Building bot...')
 
-names = ["Simon", "Jamie", "James", "Alex", "Sam", "Elliott", "Jacob", "Will", "Ned", "Jake"]
-thinking = ["Hmmm let me think.", "This is an easy one.", "Now this is HLTV confirmed.", "Tricky one...", "Errrm."]
+names = ["Simon", "Jamie", "James", "Alex", "Sam", "Elliott", "Jacob", "Will", "Ned", "Jake", "Chappers"]
+thinking = ["Hmmm let me think.", "This is an easy one.", "Now this is HLTV confirmed.", "Tricky one...", "Errrm.",
+            "OK this one is close.", "Stupid question..."]
 
 
 class CustomClient(discord.Client):
