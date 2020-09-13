@@ -29,7 +29,7 @@ def make_gif(text):
 
 
     # load the font
-    #font_size = max(10,65-(max(0, len(text)-8)*4))
+    font_size = max(10,65-(max(0, len(text)-48)*4))
     font_size = 65
     font = ImageFont.truetype("RobotoR.ttf", font_size)
     text = text_wrap(text, font, W-50)
@@ -41,7 +41,7 @@ def make_gif(text):
         img.paste(img_background, (0, 0))
         if (N % 2) == 0:
             w, h = draw.textsize(text, font=font)
-            draw.text(((W - w) / 2, (H - h) / 2), text, fill="white", font=font)
+            draw.multiline_text(((W - w) / 2, (H - h) / 2), text, fill="white", font=font, align="center")
             #draw.text((x, y), text, white, font=font)
         img.save("./frames/{}.png".format(str(N).zfill(3)))
 
