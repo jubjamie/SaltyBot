@@ -40,8 +40,8 @@ async def kill(ctx, *, pw):
         await ctx.send("No permission to kill bot.")
 
 
-@bot.command(name='repeat', help='Type !repeat to fuck something.')
-async def repeat(ctx, *, thing):
+@bot.command(name='fak', help='Type !fak to fuck something.')
+async def fak(ctx, *, thing):
     await ctx.send("Fuck {}".format(thing))
 
 
