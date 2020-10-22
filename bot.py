@@ -78,7 +78,7 @@ async def minceintro(ctx):
     if voice_channel is not None:
         channel = voice_channel.name
         vc = await voice_channel.connect()
-        vc.play(discord.FFmpegPCMAudio(source='minceintro.mp3'))
+        vc.play(discord.FFmpegPCMAudio(source='audio/minceintro.mp3'))
         while vc.is_playing():
             time.sleep(1)
         await vc.disconnect()
