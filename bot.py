@@ -71,6 +71,21 @@ async def chaser(ctx):
         await ctx.send("{} is not in a channel.".format(str(ctx.author.name)))
     await ctx.message.delete()
 
+@bot.command(name='minceintro', help='Relaxing music.')
+async def minceintro(ctx):
+    voice_channel = ctx.author.voice.channel if ctx.author.voice is not None else None
+    channel = None
+    if voice_channel is not None:
+        channel = voice_channel.name
+        vc = await voice_channel.connect()
+        vc.play(discord.FFmpegPCMAudio(source='minceintro.mp3'))
+        while vc.is_playing():
+            time.sleep(1)
+        await vc.disconnect()
+    else:
+        await ctx.send("{} is not in a channel.".format(str(ctx.author.name)))
+    await ctx.message.delete()
+
 
 @bot.command(name='goal', help='BBC WM Goal Horn')
 async def goal(ctx):
